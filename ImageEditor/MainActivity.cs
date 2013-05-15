@@ -103,13 +103,12 @@ namespace ImageEditor
                 return;
             }
 
-            var value = GetAdjustedValue(e);
-            var brightness = value / (float)100;
-
+            var brightness = GetAdjustedValue(e);
+             
             _colorMatrix.Set(new float[] {
-                1, 0, 0, brightness, 0,
-                0, 1, 0, brightness, 0,
-                0, 0, 1, brightness, 0,
+                1, 0, 0, 0, brightness,
+                0, 1, 0, 0, brightness,
+                0, 0, 1, 0, brightness,
                 0, 0, 0, 1, 0 });
 
             UpdateImage(); 
@@ -128,11 +127,12 @@ namespace ImageEditor
             float scale = input + 1f;
             float contrast = (-0.5f * scale + 0.5f) * 255f;
             _colorMatrix.Set(new float[] {
-                1, 0, 0, 0, contrast,
-                0, 1, 0, 0, contrast,
-                0, 0, 1, 0, contrast,
+                scale, 0, 0, 0, contrast,
+                0, scale, 0, 0, contrast,
+                0, 0, scale, 0, contrast,
                 0, 0, 0, 1, 0 });
 
+           
             UpdateImage(); 
         }
 
